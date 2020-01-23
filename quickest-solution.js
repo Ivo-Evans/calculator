@@ -7,7 +7,6 @@
 
 // a more advanced version would use mouse input to add numbers to the equation var, write that var to formfield, and then, when = is pressed, Read that formfield, record the value back to equation, and then write eval(equation) onto the formfield. That way, you could also edit the formfield with your own text and it would still be evaluated, and you could go back and edit equations typed with the onscreen buttons. 
 
-function calculate(string) {
-  let result = eval(string)
-  return result == typeof Number ? result : 'We couldn\'t understand your input';
+function resolve(string) {
+  return eval(string)
 }

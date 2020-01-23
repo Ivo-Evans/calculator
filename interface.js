@@ -6,9 +6,12 @@ const operators = ['+', '-', '*', '/', '\\', '**', '%']
 const calcButtons = document.getElementById('calculator');
 const textBox = document.getElementById('formfield')
 
-
+textBox.addEventListener('input', manuallyWriteExpression);
 calcButtons.addEventListener('click', handleClick);
-textBox.addEventListener('input', writeExpression);
+
+function manuallyWriteExpression() { // this could just be a function expression really...
+  expression = textBox.value;
+}
 
 function handleClick(e) {
   let event = e.target;
@@ -35,6 +38,9 @@ function addToExpression(event) {
   textBox.value = expression;
 }
 
-function writeExpression() {
-  expression = textBox.value;
+function handleInputTag(event) {
+  if (event.id == 'equalsSign') {
+    expression = resolve(expression);
+    textBox.value = expression;
+  }
 }
