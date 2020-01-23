@@ -4,7 +4,11 @@ let expression = "";
 const numbers = new Array(10).fill().map((e, i) => String(i));
 const operators = ['+', '-', '*', '/', '\\', '**', '%']
 const calcButtons = document.getElementById('calculator');
+const textBox = document.getElementById('formfield')
+
+
 calcButtons.addEventListener('click', handleClick);
+textBox.addEventListener('input', writeExpression);
 
 function handleClick(e) {
   let event = e.target;
@@ -28,4 +32,9 @@ function addToExpression(event) {
   } else if (choice == ')') {
     expression += ` ${choice}`;
   }
+  textBox.value = expression;
+}
+
+function writeExpression() {
+  expression = textBox.value;
 }
