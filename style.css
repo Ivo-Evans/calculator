@@ -1,0 +1,34 @@
+#calculator {
+  max-width: 200px;
+  min-width: 200px;
+}
+
+#row-one {
+  max-width: 100%;
+  min-width: 100%;
+  display: flex;
+}
+
+#row-two {
+  display: flex;
+}
+
+#row-three {
+  display: flex;
+}
+
+#row-four {
+  display: flex;
+}
+
+#row-five {
+  display: flex;
+}
+
+
+
+
+
+
+
+
