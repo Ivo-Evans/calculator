@@ -8,12 +8,13 @@ const textBox = document.getElementById('formfield')
 
 textBox.addEventListener('input', manuallyWriteExpression);
 calcButtons.addEventListener('click', handleClick);
-// TODO: the enter key should trigger resolve. Any other keydown should focus onto textBox
+// TODO: the enter key should trigger resolve. Any other keydown should focus onto textBox so that keyup puts text into textBox
+// TODO: add (, ), ., and C buttons. C clears screen
 
 function manuallyWriteExpression() {  
   // this could just be a function expression really
   expression = textBox.value;
-  expression = expression.replace(/\\/g, '/'); // regex /// is read as a comment
+  expression = expression.replace(/\\/g, '/'); // the regex /// is read as a comment
 }
 
 function handleClick(e) {
