@@ -6,10 +6,12 @@ const operators = ['+', '-', '*', '/', '\\', '**', '%']
 const calcButtons = document.getElementById('calculator');
 const textBox = document.getElementById('formfield')
 
-textBox.addEventListener('input', manuallyWriteExpression);
+textBox.addEventListener('input', manuallyWriteExpression); 
+document.addEventListener('keydown', () => {textBox.focus()}); // redesign: the top bar shouldn't be input, just <p>, and should be sensitive to keyups Anywhere on the page. 
 calcButtons.addEventListener('click', handleClick);
 // TODO: the enter key should trigger resolve. Any other keydown should focus onto textBox so that keyup puts text into textBox
 // TODO: add (, ), ., and C buttons. C clears screen
+
 
 function manuallyWriteExpression() {  
   // this could just be a function expression really
