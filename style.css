@@ -3,32 +3,22 @@
   min-width: 200px;
 }
 
-#row-one {
-  max-width: 100%;
-  min-width: 100%;
+.row {
   display: flex;
+  min-height: 50px;
 }
 
-#row-two {
-  display: flex;
+.row button {
+  min-width: 25%;
 }
 
-#row-three {
-  display: flex;
+#formfield {
+  width: 75%;
 }
 
-#row-four {
-  display: flex;
+#equalsSign {
+  width: 25%;
 }
-
-#row-five {
-  display: flex;
-}
-
-
-
-
-
 
 
 
