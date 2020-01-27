@@ -6,13 +6,11 @@ let historyLocation = history.length;
 const numbers = new Array(10).fill().map((e, i) => String(i));
 const operators = ["+", "-", "*", "/", "\\", "**", "%"];
 const calcButtons = document.getElementById("calculator");
-const textBox = document.getElementById("formfield");
-const historyBox = document.getElementById("history")
+const textBox = document.querySelector(".formfield");
+const historyBox = document.querySelector(".history")
 
 textBox.addEventListener("input", manuallyWriteExpression);
-document.addEventListener("keydown", () => {
-  textBox.focus();
-}); // redesign: the top bar shouldn't be input, just <p>, and should be sensitive to keyups Anywhere on the page. This might also give you more control over styling. Problem: this will register, e.g. backspace as a string.
+document.addEventListener("keydown", () => {textBox.focus()});
 document.addEventListener("keyup", checkForSpecialKeys);
 calcButtons.addEventListener("click", handleClick);
 
@@ -77,9 +75,9 @@ function returnResult() {
   // instead of flag you could use currying...
   history.push(expression);
   historyLocation = history.length - 1;
+  updateHistoryBar();
   expression = resolve(expression);
   textBox.value = expression;
-  updateHistoryBar();
 }
 
 function jumpToHistory() {
@@ -94,3 +92,6 @@ function updateHistoryBar() {
     historyBox.innerText = `[${historyLocation + 1}] ${history[historyLocation]}`;  
   }
 }
+
+// TODO: remove focus indication when you're entering text on box
+// TODO: currently the history display shows the same thing as the current display while you're scrolling through it... could this be fixed?
