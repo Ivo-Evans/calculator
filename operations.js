@@ -1,4 +1,4 @@
-// TODO: redesign this system. It current doesn't do well (at all) with two-element arrays. There is also the question of how you are going to deal with minus numbers
+// TODO: redesign this system. It current doesn't do well (at all) with two-element arrays. There is also the question of how you are going to deal with minus numbers? How do minus numbers even fit into PEMDAS? Is -5 * 20 == 0 - 5 * 20?
 
 function exponents(equation) {
   console.log("exponents called with " + equation);
