@@ -21,7 +21,7 @@ function resolve(string) {
         return;
       }
     });
-  } return equation;
+  } return (equation || "Error");
 }
 
 function parse(string) {
@@ -47,17 +47,13 @@ function parentheses(equation) {
     if (element[0] === "(") {
       return resolve(element.slice(1, element.length -1));
     } else if (element[1] === "(") {
-      return Number("-" - resolve(element.slice(2, element.length - 1)));
+      return Number("-" + resolve(element.slice(2, element.length - 1)));
     } else {
       return element;
     }
   })
   // console.log("parentheses returns " + equation);
   return equation;
-}
-
-function detectDoubleNegatives(equation) {
-  return equation.map((element) => element.slice(0, 2) == "--" ? element.slice(2, element.length) : element); 
 }
 
 function detectMinusNumber(equation) {
@@ -70,6 +66,10 @@ function detectMinusNumber(equation) {
     }
   }
   return equation.filter((element => element !== null));
+}
+
+function detectDoubleNegatives(equation) {
+  return equation.map((element) => element.slice(0, 2) == "--" ? element.slice(2, element.length) : element); 
 }
 
 function scanner(operator, operation, equation) {
