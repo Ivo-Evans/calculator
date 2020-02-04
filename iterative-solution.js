@@ -1,29 +1,27 @@
-const operations = [exponents, multiplication, division, addition, subtraction, remainder];
+let operations = new Map();
+
+operations.set("**", (lhs, rhs) => Number(lhs) ** Number(rhs));
+operations.set("*", (lhs, rhs) => Number(lhs) * Number(rhs));
+operations.set("/", (lhs, rhs) => Number(lhs) / Number(rhs));
+operations.set("+", (lhs, rhs) => Number(lhs) + Number(rhs));
+operations.set("-", (lhs, rhs) => Number(lhs) - Number(rhs));
+operations.set("%", (lhs, rhs) => Number(lhs) % Number(rhs));
 
 function resolve(string) {
   let equation = parse(string);
   if (equation) {
     equation = parentheses(equation);
     equation = detectMinusNumber(equation);
-
-    operations.forEach(operation => {
-      equation = operation(equation);
-        try {
-          equation = operation(equation)
-          console.log('try succeeded');
-          if (equation.includes(NaN)) {
-            console.log('return includes NaN')
-            equation = 'Error';
-            return;
-          }
+    equation = detectDoubleNegatives(equation);
+    operations.forEach((v, k) => {
+      try {
+        equation = scanner(k, v, equation);
+      } catch {
+        equation = "Error";
+        return;
       }
-      catch {
-        return 'Error'
-      }
-    })
-  }
-
-  return equation;
+    });
+  } return equation;
 }
 
 function parse(string) {
@@ -42,20 +40,7 @@ So if you feed it 5+-92*9**2*(9-2) you will get ["5", "+", "-", "92", "*", "9", 
 */
 }
 
-
-function detectMinusNumber(equation) {
-  for(let i = 0; i < equation.length; i++) {
-    if (equation[i] === '-') {
-      if (operators.includes(equation[i - 1])) {
-        equation[i] += equation[i + 1];
-        equation[i + 1] = null;
-      }
-    }
-  }
-  return equation.filter((element => element !== null));
-}
-
-function parentheses(equation) { // TODO: JavaScript doesn't know how to read double minus numbers as positive numbers, so you will have to do that for it. --5 returns an error, but it is a prima facie valid mathematical operation (as in, e.g. 500+--5, as is returned by 500 + -(0-5)).
+function parentheses(equation) { 
   // console.log("parentheses called with " + equation);
   // console.log(equation)
   equation = equation.map(element => {
@@ -71,15 +56,29 @@ function parentheses(equation) { // TODO: JavaScript doesn't know how to read do
   return equation;
 }
 
+function detectDoubleNegatives(equation) {
+  return equation.map((element) => element.slice(0, 2) == "--" ? element.slice(2, element.length) : element); 
+}
 
-// function parentheses(equation) {
-//   // console.log("parentheses called with " + equation);
-//   // console.log(equation)
-//   equation = equation.map(element => {
-//     return element[0] == "("
-//       ? resolve(element.slice(1, element.length - 1))
-//       : element;
-//   });
-//   // console.log("parentheses returns " + equation);
-//   return equation;
-// }
+function detectMinusNumber(equation) {
+  for(let i = 0; i < equation.length; i++) {
+    if (equation[i] === '-') {
+      if (operators.includes(equation[i - 1])) {
+        equation[i] += equation[i + 1];
+        equation[i + 1] = null;
+      }
+    }
+  }
+  return equation.filter((element => element !== null));
+}
+
+function scanner(operator, operation, equation) {
+  for (let i = 0; i < equation.length; i++) {
+    if (equation[i] == operator) {
+      equation[i] = operation(equation[i - 1], equation[i + 1]);
+      equation[i - 1] = null;
+      equation[i + 1] = null;
+    }
+  }
+  return equation.filter(e => e !== null);
+}

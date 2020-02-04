@@ -23,6 +23,8 @@ function manuallyWriteExpression() {
 function checkForSpecialKeys(event) {
   if (event.key == "Enter") {
     returnResult();
+  } else if (event.key.toLowerCase() == 'c') {
+    textBox.value = expression = "";
   } else if (event.key == "ArrowUp") {
     if (historyLocation > 0) {
       historyLocation--;
@@ -72,7 +74,6 @@ function handleInputTag(event) {
 }
 
 function returnResult() {
-  // instead of flag you could use currying...
   history.push(expression);
   historyLocation = history.length - 1;
   updateHistoryBar();
@@ -93,5 +94,4 @@ function updateHistoryBar() {
   }
 }
 
-// TODO: remove focus indication when you're entering text on box
 // TODO: currently the history display shows the same thing as the current display while you're scrolling through it... could this be fixed?
