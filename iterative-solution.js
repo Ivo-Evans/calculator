@@ -21,7 +21,8 @@ function resolve(string) {
         return;
       }
     });
-  } return (equation || "Error");
+  } 
+  return equation[0] == equation[0] ? equation[0] : 'Error'; // NaN != NaN
 }
 
 function parse(string) {
