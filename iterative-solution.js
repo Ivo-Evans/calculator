@@ -76,9 +76,10 @@ function detectDoubleNegatives(equation) {
 function scanner(operator, operation, equation) {
   for (let i = 0; i < equation.length; i++) {
     if (equation[i] == operator) {
-      equation[i] = operation(equation[i - 1], equation[i + 1]);
+      equation[i + 1] = operation(equation[i - 1], equation[i + 1]);
+      equation[i] = null;
       equation[i - 1] = null;
-      equation[i + 1] = null;
+      console.log(equation);
     }
   }
   return equation.filter(e => e !== null);
