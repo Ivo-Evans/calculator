@@ -6,8 +6,8 @@ let historyLocation = history.length;
 const numbers = new Array(10).fill().map((e, i) => String(i));
 const operators = ["+", "-", "*", "/", "\\", "**", "%"];
 const calcButtons = document.getElementById("calculator");
-const textBox = document.querySelector(".formfield");
-const historyBox = document.querySelector(".history")
+const textBox = document.getElementById("formfield");
+const historyBox = document.getElementById("history")
 
 textBox.addEventListener("input", manuallyWriteExpression);
 document.addEventListener("keydown", () => {textBox.focus()});
@@ -43,7 +43,7 @@ function checkForSpecialKeys(event) {
 function handleClick(e) {
   let event = e.target;
   if (event.tagName == "BUTTON") {
-    event.id == "C"
+    event.innerText == "C"
       ? (textBox.value = expression = "")
       : addToExpression(event);
   } else if (event.tagName == "INPUT") {
@@ -54,7 +54,7 @@ function handleClick(e) {
 }
 
 function addToExpression(event) {
-  let choice = event.id;
+  let choice = event.innerText;
   if (numbers.includes(choice)) {
     expression += choice;
   } else if (operators.includes(choice)) {
@@ -88,10 +88,8 @@ function jumpToHistory() {
   }
 }
 
-function updateHistoryBar() {
-  if (history.length > 0) {
+function updateHistoryBar() { 
+  if (history.length > 0 && history[historyLocation] !== undefined) {
     historyBox.innerText = `[${historyLocation + 1}] ${history[historyLocation]}`;  
   }
 }
-
-// TODO: currently the history display shows the same thing as the current display while you're scrolling through it... could this be fixed?

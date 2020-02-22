@@ -3,51 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Calculator</title>
+  <title>Document</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id='calculator'>
-    <span class="row">
-      <div class="equationBoxes">
-        <small class="history">[0]</small>
-        <input class="formfield" type="text" placeholder="enter sum"> 
-      </div>      
-      <input class="equalsSign" type="submit" value="=" id="">
+  <div id="calculator">
+    <span id="top-bar">
+      <small id="history">[0]</small>
+      <input id="formfield" type="text" maxlength="25" placeholder="enter sum"> 
+      <input id="equalsSign" type="submit" value="=" id="">  
     </span>
-    <span class="row">
-      <button id="7">7</button>
-      <button id="8">8</button>
-      <button id="9">9</button>
-      <button id="/">/</button>
-    </span>
-    <span class="row">
-      <button id="4">4</button>
-      <button id="5">5</button>
-      <button id="6">6</button>
-      <button id="*">*</button>
-    </span>
-    <span class="row">
-      <button id="1">1</button>
-      <button id="2">2</button>
-      <button id="3">3</button>
-      <button id="+">+</button>
-    </span>
-    <span class="row">
-      <button id="0">0</button>
-      <button id="**">**</button>
-      <button id="%">%</button>
-      <button id="-">-</button>
-    </span>
-    <span class="row">
-      <button id="(">(</button>
-      <button id=")">)</button>
-      <button id=".">.</button>
-      <button id="C">C</button>
-    </span>
+
+    <button id="zero">0</button>    
+    <button id="one">1</button>    
+    <button id="two">2</button>
+    <button id="three">3</button>
+    <button id="four">4</button>
+    <button id="five">5</button>
+    <button id="six">6</button>
+    <button id="seven">7</button>
+    <button id="eight">8</button>
+    <button id="nine">9</button>
+
+    <button id="divide">/</button>
+    <button id="multiply">*</button>
+    <button id="add">+</button>
+    <button id="subtract">-</button>
+    <button id="exponent">**</button>
+    <button id="remainder">%</button>
+
+    <button id="open-bracket">(</button>
+    <button id="close-bracket">)</button>
+    <button id="dot">.</button>
+    <button id="C">C</button>
+
   </div>
+
   <script src="./interface.js"></script>
   <script src="./iterative-solution.js"></script>
 </body>
 </html>
+
+<!-- This will require minor changes to JS. A few querySelector should become getElementById, and a few tests for id content should become tests for innerText-->

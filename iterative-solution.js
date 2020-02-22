@@ -79,7 +79,6 @@ function scanner(operator, operation, equation) {
       equation[i + 1] = operation(equation[i - 1], equation[i + 1]);
       equation[i] = null;
       equation[i - 1] = null;
-      console.log(equation);
     }
   }
   return equation.filter(e => e !== null);
