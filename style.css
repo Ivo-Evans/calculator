@@ -9,12 +9,14 @@ button, input {
   font-size: 50%;
 }
 
-input {
-  background-color: #187d19;
+button:hover, #equalsSign:hover {
+  opacity: 0.5;
 }
 
+
+
 small {
-  font-size: 25%;
+  font-size: 25%; /* This thing won't change font-style.. time to make it a p? */
 }
 
 .number {
@@ -64,6 +66,7 @@ small {
 #equalsSign {
   grid-row: 1 / 6;
   grid-column: 4;
+  background-color: #187d19;
 }
 
 #seven {

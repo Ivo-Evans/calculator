@@ -77,7 +77,7 @@ function returnResult() {
   history.push(expression);
   historyLocation = history.length - 1;
   updateHistoryBar();
-  expression = resolve(expression);
+  expression = String(resolve(expression)).slice(0, textBox.maxLength);
   textBox.value = expression;
 }
 
@@ -93,3 +93,7 @@ function updateHistoryBar() {
     historyBox.innerText = `[${historyLocation + 1}] ${history[historyLocation]}`;  
   }
 }
+
+
+// TODO: implement swipe navigation for history browsing
+// TDOD: implement opacity change on keydown and removal on keyup, as well as disallowal of bad characters
