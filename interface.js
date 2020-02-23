@@ -26,15 +26,16 @@ function checkForSpecialKeys(event) {
   } else if (event.key.toLowerCase() == 'c') {
     textBox.value = expression = "";
   } else if (event.key == "ArrowUp") {
-    if (historyLocation > 0) {
-      historyLocation--;
-    }
-    jumpToHistory();
-    updateHistoryBar();
+    traverseHistory(-1)
   } else if (event.key == "ArrowDown") {
-    if (historyLocation < history.length - 1) {
-      historyLocation++;
-    }
+    traverseHistory(1);
+  }
+}
+
+function traverseHistory(direction) {
+ let end = history.length - 1;
+  if ((historyLocation > 0 && direction < 0) || (historyLocation < end && direction > 0)) {
+    historyLocation += direction;
     jumpToHistory();
     updateHistoryBar();
   }
@@ -43,13 +44,13 @@ function checkForSpecialKeys(event) {
 function handleClick(e) {
   let event = e.target;
   if (event.tagName == "BUTTON") {
-    event.innerText == "C"
-      ? (textBox.value = expression = "")
-      : addToExpression(event);
-  } else if (event.tagName == "INPUT") {
-    handleInputTag(event);
-  } else {
-    return;
+    if (event.innerText == "C") {
+      textBox.value = expression = "";
+    } else if (event.innerText == "=") {
+      returnResult();
+    } else {
+      addToExpression(event);
+    }
   }
 }
 
@@ -65,12 +66,6 @@ function addToExpression(event) {
     expression += ` ${choice}`;
   }
   textBox.value = expression;
-}
-
-function handleInputTag(event) {
-  if (event.id == "equalsSign") {
-    returnResult();
-  }
 }
 
 function returnResult() {
@@ -96,4 +91,4 @@ function updateHistoryBar() {
 
 
 // TODO: implement swipe navigation for history browsing
-// TDOD: implement opacity change on keydown and removal on keyup, as well as disallowal of bad characters
+// TDOD: implement opacity change on keydown and removal on keyup, as well as disallowal of bad characters. In other words, rework the keyboard input system. 

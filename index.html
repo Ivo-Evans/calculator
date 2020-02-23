@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="calculator">
     <span id="top-bar">
-      <small id="history">↑/↓ or swipe for history</small>
-      <input id="formfield" type="text" maxlength="12" placeholder="enter sum"> 
-      <input id="equalsSign" type="submit" value="=" id="">  
+      <p id="history">arrow keys/swipe  for history</p>
+      <input id="formfield" type="text" maxlength="12" placeholder="enter sum" autocomplete="off"> 
+      <!-- <input id="equalsSign" type="submit" value="="> -->
+      <button id="equalsSign">=</button>  
     </span>
 
     <button class="number" id="zero">0</button>    
@@ -43,5 +44,3 @@
   <script src="./iterative-solution.js"></script>
 </body>
 </html>
-
-<!-- This will require minor changes to JS. A few querySelector should become getElementById, and a few tests for id content should become tests for innerText-->

@@ -2,6 +2,10 @@
   color: #FFF
 }
 
+*:focus {
+  outline: 0;
+}
+
 button, input {
   border: 0;
   background-color: #383838;
@@ -13,12 +17,6 @@ button:hover, #equalsSign:hover {
   opacity: 0.5;
 }
 
-
-
-small {
-  font-size: 25%; /* This thing won't change font-style.. time to make it a p? */
-}
-
 .number {
   color: #82a8ff;
 }
@@ -26,6 +24,8 @@ small {
 #calculator {
   width: 312px;
   height: 500px;
+  max-width: 100vw;
+  max-height: 100vh;
   font-size: 60px; /* set this relative to width and height of calculator */
   border-radius: 2%;
 
@@ -54,6 +54,10 @@ small {
   padding-top: 2%;
   grid-row: 1 / 3;
   grid-column: 1 / 4;
+  
+  font-size: 20%;
+  margin: 0;
+  font-family: monospace;
 }
 
 #formfield {
