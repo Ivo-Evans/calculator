@@ -1,5 +1,4 @@
 let operations = new Map();
-
 operations.set("**", (lhs, rhs) => Number(lhs) ** Number(rhs));
 operations.set("*", (lhs, rhs) => Number(lhs) * Number(rhs));
 operations.set("/", (lhs, rhs) => Number(lhs) / Number(rhs));
@@ -26,10 +25,8 @@ function resolve(string) {
 }
 
 function parse(string) {
-  // console.log("parse called with " + string);
   return string.match(/\(.*\)|[0-9.]+|\*{2}|[-+*/%]/g);
-  // console.log("parse returns " + rv);
-  // return rv;
+
   /* 
 so what's going on here? Parse scans the input string and creates an array with four kinds of values, separated and prioritised by alternators:
 1) First it looks for any sub-expressions within brackets. It works for nested brackets (i.e. matches according to the outside layer of brackets only) - I'm not sure why, maybe because regex is 'greedy'
@@ -42,18 +39,16 @@ So if you feed it 5+-92*9**2*(9-2) you will get ["5", "+", "-", "92", "*", "9", 
 }
 
 function parentheses(equation) { 
-  // console.log("parentheses called with " + equation);
-  // console.log(equation)
   equation = equation.map(element => {
     if (element[0] === "(") {
       return resolve(element.slice(1, element.length -1));
-    } else if (element[1] === "(") {
-      return Number("-" + resolve(element.slice(2, element.length - 1)));
+    // } else if (element[1] === "(") { 
+    //   return Number("-" + resolve(element.slice(2, element.length - 1)));
+    // commented out because program never encounters a negative parenthesis - it calculates them as normal parentheses, then in the next step realises that the result should be negative.
     } else {
       return element;
     }
   })
-  // console.log("parentheses returns " + equation);
   return equation;
 }
 
