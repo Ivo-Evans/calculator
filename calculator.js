@@ -65,16 +65,21 @@ function detectMinusNumber(equation) {
 }
 
 function detectDoubleNegatives(equation) {
-  return equation.map((element) => element.slice(0, 2) == "--" ? element.slice(2, element.length) : element); 
+  return equation.map((element) => { 
+    return element.slice(0, 2) === "--" ? element.slice(2, element.length) : element;
+  }) 
 }
 
 function scanner(operator, operation, equation) {
   for (let i = 0; i < equation.length; i++) {
     if (equation[i] == operator) {
-      equation[i + 1] = operation(equation[i - 1], equation[i + 1]);
+      equation[i + 1] = String(operation(equation[i - 1], equation[i + 1]));
       equation[i] = null;
       equation[i - 1] = null;
     }
   }
   return equation.filter(e => e !== null);
 }
+
+resolve("(2 + 3)");
+
