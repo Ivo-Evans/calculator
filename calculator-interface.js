@@ -44,6 +44,8 @@ function addOpacity(innerText) {
   buttons.find(b => b.innerText == innerText).classList.add("pressed-button");
 }
 
+//TODO: keypressing is frustrating right now. Keys should appear on screen on keydown, not keyup, but only if they're in numbers or operators. 
+
 function handleKeyUp(event) {
   let key = event.key;
   buttons.forEach(button => button.classList.remove("pressed-button"));

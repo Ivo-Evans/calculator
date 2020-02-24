@@ -1,3 +1,5 @@
+const clean = equation => equation.filter((element => element !== null))
+
 let operations = new Map();
 operations.set("**", (lhs, rhs) => Number(lhs) ** Number(rhs));
 operations.set("*", (lhs, rhs) => Number(lhs) * Number(rhs));
@@ -61,7 +63,7 @@ function detectMinusNumber(equation) {
       }
     }
   }
-  return equation.filter((element => element !== null));
+  return clean(equation);
 }
 
 function detectDoubleNegatives(equation) {
@@ -78,8 +80,12 @@ function scanner(operator, operation, equation) {
       equation[i - 1] = null;
     }
   }
-  return equation.filter(e => e !== null);
+  return clean(equation);
 }
 
-resolve("(2 + 3)");
+console.log(
+  // resolve("4 + 4 / 2 + ( 1 +1)")
+  // resolve("4()")
+  // TODO: make the second equation throw an error the user can see
+)
 
