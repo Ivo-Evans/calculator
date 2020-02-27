@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="calculator">
-    <span id="top-bar">
-      <p id="history">arrow keys/swipe for history</p>
-      <input id="formfield" type="text" maxlength="12" placeholder="enter sum" autocomplete="off" readonly> 
-      <button id="equalsSign">=</button>  
-    </span>
-    
-    <button class="number" id="zero">0</button>    
-    <button class="number" id="one">1</button>    
-    <button class="number" id="two">2</button>
-    <button class="number" id="three">3</button>
-    <button class="number" id="four">4</button>
-    <button class="number" id="five">5</button>
-    <button class="number" id="six">6</button>
-    <button class="number" id="seven">7</button>
-    <button class="number" id="eight">8</button>
-    <button class="number" id="nine">9</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="calculator">
+      <span id="top-bar">
+        <p id="history">arrow keys/swipe for history</p>
+        <input
+          id="formfield"
+          type="text"
+          maxlength="12"
+          placeholder="enter sum"
+          autocomplete="off"
+          readonly
+        />
+        <button id="equalsSign">=</button>
+      </span>
 
-    <button class="operator" id="divide">/</button>
-    <button class="operator" id="multiply">*</button>
-    <button class="operator" id="add">+</button>
-    <button class="operator" id="subtract">-</button>
-    <button class="operator" id="exponent">**</button>
-    <button class="operator" id="remainder">%</button>
+      <button class="number" id="zero">0</button>
+      <button class="number" id="one">1</button>
+      <button class="number" id="two">2</button>
+      <button class="number" id="three">3</button>
+      <button class="number" id="four">4</button>
+      <button class="number" id="five">5</button>
+      <button class="number" id="six">6</button>
+      <button class="number" id="seven">7</button>
+      <button class="number" id="eight">8</button>
+      <button class="number" id="nine">9</button>
 
-    <button class="operator" id="open-bracket">(</button>
-    <button class="operator" id="close-bracket">)</button>
-    <button class="operator" id="dot">.</button>
-    <button class="operator" id="C">C</button>
+      <button class="operator" id="divide">/</button>
+      <button class="operator" id="multiply">*</button>
+      <button class="operator" id="add">+</button>
+      <button class="operator" id="subtract">-</button>
+      <button class="operator" id="exponent">**</button>
+      <button class="operator" id="remainder">%</button>
 
-  </div>
+      <button class="operator" id="open-bracket">(</button>
+      <button class="operator" id="close-bracket">)</button>
+      <button class="operator" id="dot">.</button>
+      <button class="operator" id="C">C</button>
+    </div>
 
-  <script src="./calculator-interface.js"></script>
-  <script src="./calculator.js"></script>
-</body>
+    <script src="./calculator-interface.js"></script>
+    <script src="./calculator.js"></script>
+    <script>
+      function handleFirstTab(e) {
+        if (e.keyCode === 9) {
+          document.body.classList.add("user-is-tabbing");
+
+          window.removeEventListener("keydown", handleFirstTab);
+          window.addEventListener("mousedown", handleMouseDownOnce);
+        }
+      }
+
+      function handleMouseDownOnce() {
+        document.body.classList.remove("user-is-tabbing");
+
+        window.removeEventListener("mousedown", handleMouseDownOnce);
+        window.addEventListener("keydown", handleFirstTab);
+      }
+
+      addEventListener("keydown", handleFirstTab);
+      // nifty functions and css from hacker noon: https://medium.com/hackernoon/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
+    </script>
+  </body>
 </html>

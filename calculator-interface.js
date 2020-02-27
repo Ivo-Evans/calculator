@@ -31,7 +31,7 @@ function handleKeyDown(event) {
     traverseHistory(-1);
   } else if (key === "ArrowDown") {
     traverseHistory(1);
-  } else if (key.toLowerCase() == "c") {
+  } else if (key.toLowerCase() === "c") {
     textBox.value = expression = "";
     addOpacity("C");
   } else if (validCharacters.includes(key)) {
@@ -41,7 +41,7 @@ function handleKeyDown(event) {
 }
 
 function addOpacity(innerText) {
-  buttons.find(b => b.innerText == innerText).classList.add("pressed-button");
+  buttons.find(b => b.innerText === innerText).classList.add("pressed-button");
 }
 
 //TODO: keypressing is frustrating right now. Keys should appear on screen on keydown, not keyup, but only if they're in numbers or operators. 
@@ -71,10 +71,10 @@ function traverseHistory(direction) {
 
 function handleClick(e) {
   let event = e.target;
-  if (event.tagName == "BUTTON") {
-    if (event.innerText == "C") {
+  if (event.tagName === "BUTTON") {
+    if (event.innerText === "C") {
       textBox.value = expression = "";
-    } else if (event.innerText == "=") {
+    } else if (event.innerText === "=") {
       returnResult();
     } else {
       addToExpression(event.innerText);
@@ -92,9 +92,9 @@ function addToExpression(choice) {
     } else {
       expression += ` ${choice} `;
     }
-  } else if (choice == "(") {
+  } else if (choice === "(") {
     expression += `${choice} `;
-  } else if (choice == ")") {
+  } else if (choice === ")") {
     expression += ` ${choice}`;
   }
   textBox.value = expression;

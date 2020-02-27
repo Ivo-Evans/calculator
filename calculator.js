@@ -23,7 +23,7 @@ function resolve(string) {
       }
     });
   } 
-  return equation[0] == equation[0] ? equation[0] : 'Error'; // NaN != NaN
+  return equation[0] === equation[0] ? equation[0] : 'Error'; // NaN != NaN
 }
 
 function parse(string) {
@@ -74,7 +74,7 @@ function detectDoubleNegatives(equation) {
 
 function scanner(operator, operation, equation) {
   for (let i = 0; i < equation.length; i++) {
-    if (equation[i] == operator) {
+    if (equation[i] === operator) {
       equation[i + 1] = String(operation(equation[i - 1], equation[i + 1]));
       equation[i] = null;
       equation[i - 1] = null;

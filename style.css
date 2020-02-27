@@ -1,17 +1,16 @@
-* {
-  color: #fff;
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
 }
 
-*:focus {
-  outline: 0;
-}
-
-button,
-input {
+button, input {
   border: 0;
   background-color: #383838;
   font-family: monospace;
   font-size: 50%;
+  color: inherit;
 }
 
 button:hover {
@@ -33,6 +32,7 @@ button:hover {
   max-height: 100vh;
   font-size: 60px; /* set this relative to width and height of calculator */
   border-radius: 2%;
+  color: #fff;
 
   position: absolute;
   top: 50%;
