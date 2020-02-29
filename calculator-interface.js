@@ -14,6 +14,7 @@ const historyBox = document.getElementById("history");
 const validCharacters = buttons.map(b => b.innerText);
 const numbers = new Array(10).fill().map((e, i) => String(i));
 const operators = ["+", "-", "*", "/", "\\", "**", "%"];
+const maxCharacters = 12;
 
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
@@ -83,6 +84,7 @@ function handleClick(e) {
 }
 
 function addToExpression(choice) {
+  if (expression.length >= maxCharacters) { return };
   if (numbers.includes(choice)) {
     expression += choice;
   } else if (operators.includes(choice)) {
@@ -104,7 +106,7 @@ function returnResult() {
   history.push(expression);
   historyLocation = history.length - 1;
   updateHistoryBar();
-  expression = String(resolve(expression)).slice(0, textBox.maxLength);
+  expression = String(resolve(expression)).slice(0, maxCharacters);
   textBox.value = expression;
 }
 

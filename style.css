@@ -5,7 +5,8 @@ body:not(.user-is-tabbing) textarea:focus {
   outline: none;
 }
 
-button, input {
+button,
+input, output {
   border: 0;
   background-color: #383838;
   font-family: monospace;
