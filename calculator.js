@@ -23,7 +23,9 @@ function resolve(string) {
       }
     });
   } 
-  return equation[0] === equation[0] ? equation[0] : 'Error'; // NaN != NaN
+  equation = String(equation[0]);
+  return /[0-9]+/.test(equation) ? equation : 'Error';
+  // return equation[0] === equation[0] ? equation[0] : 'Error'; // NaN != NaN
 }
 
 function parse(string) {
@@ -41,9 +43,13 @@ So if you feed it 5+-92*9**2*(9-2) you will get ["5", "+", "-", "92", "*", "9", 
 }
 
 function parentheses(equation) { 
-  equation = equation.map(element => {
+    equation = equation.map(element => {
     if (element[0] === "(") {
-      return resolve(element.slice(1, element.length -1));
+      try {
+        return resolve(element.slice(1, element.length -1));
+      } catch {
+        return 'Error';
+      }
     // } else if (element[1] === "(") { 
     //   return Number("-" + resolve(element.slice(2, element.length - 1)));
     // commented out because program never encounters a negative parenthesis - it calculates them as normal parentheses, then in the next step realises that the result should be negative.
@@ -51,13 +57,13 @@ function parentheses(equation) {
       return element;
     }
   })
-  return equation;
+    return equation;
 }
 
 function detectMinusNumber(equation) {
   for(let i = 0; i < equation.length; i++) {
     if (equation[i] === '-') {
-      if (operators.includes(equation[i - 1])) {
+      if (equation[i - 1] === undefined || operators.includes(equation[i - 1])) {
         equation[i] += equation[i + 1];
         equation[i + 1] = null;
       }
@@ -75,17 +81,10 @@ function detectDoubleNegatives(equation) {
 function scanner(operator, operation, equation) {
   for (let i = 0; i < equation.length; i++) {
     if (equation[i] === operator) {
-      equation[i + 1] = String(operation(equation[i - 1], equation[i + 1]));
+      equation[i + 1] = operation(equation[i - 1], equation[i + 1]);
       equation[i] = null;
       equation[i - 1] = null;
     }
   }
   return clean(equation);
 }
-
-console.log(
-  // resolve("4 + 4 / 2 + ( 1 +1)")
-  // resolve("4()")
-  // TODO: make the second equation throw an error the user can see
-)
-
