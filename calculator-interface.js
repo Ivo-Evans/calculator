@@ -13,6 +13,7 @@ const historyBox = document.getElementById("history");
 
 const validCharacters = buttons.map(b => b.innerText);
 const numbers = new Array(10).fill().map((e, i) => String(i));
+numbers.push(".")
 const operators = ["+", "-", "*", "/", "\\", "**", "%"];
 const maxCharacters = 12;
 
