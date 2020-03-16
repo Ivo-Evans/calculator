@@ -38,28 +38,29 @@
       <button class="operator" id="C">C</button>
     </div>
 
-    <script src="tests/test.js"></script>
     <script src="./calculator-interface.js"></script>
     <script src="./calculator.js"></script>
     <script>
       function handleFirstTab(e) {
         if (e.keyCode === 9) {
           document.body.classList.add("user-is-tabbing");
-
+          
           window.removeEventListener("keydown", handleFirstTab);
           window.addEventListener("mousedown", handleMouseDownOnce);
         }
       }
-
+      
       function handleMouseDownOnce() {
         document.body.classList.remove("user-is-tabbing");
-
+        
         window.removeEventListener("mousedown", handleMouseDownOnce);
         window.addEventListener("keydown", handleFirstTab);
       }
-
+      
       addEventListener("keydown", handleFirstTab);
       // nifty functions and css from hacker noon: https://medium.com/hackernoon/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
-    </script>
+      </script>
+      <script src="tests/test.js"></script>
+      <script src="tests/unit-tests.js"></script>
   </body>
 </html>
