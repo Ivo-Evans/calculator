@@ -1,4 +1,4 @@
-
+console.group('integration tests')
 console.group('resolve')
 test('operations on two integers', (assert) => {
   assert.equal('10', resolve('5 + 5'), 'add two integers')
@@ -24,9 +24,7 @@ test('order of operations (PEMDAS)', (assert) => {
   // handles mod right - not included because this isn't a feature, although it could be
 })
 
-test('handles parentheses appropriately', (assert) => {
-  // the program handles nested parentheses as expected
-  // the program handles adjacent parentheses as expected
+test('Parentheses and minus numbers', (assert) => {
   // you can negate an entire parenthetical expression
   // a parenthesis which is negated and yields a negative number is converted back into a positive number
 })
@@ -38,3 +36,4 @@ test('Error messages', (assert) => {
   assert.equal('Error', resolve('4 + () 4'), 'Empty parentheses force an error')
 })
 console.groupEnd('resolve')
+console.groupEnd('integration tests')
