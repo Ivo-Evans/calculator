@@ -2,10 +2,7 @@ These are test cases I should have written. Having them would have seriously imp
 
 # simple arithmetic
 
-- adds two integers
-- subtracts two integers
-- multiplies two integers
-- divides two integers
+
 
 - adds two floats with requisite precision
 - subtracts two floats with requisite precision
@@ -19,13 +16,12 @@ These are test cases I should have written. Having them would have seriously imp
 - detects minus numbers at the beginning of the equation
 - detects minus numbers after an operator
 
-- Displays error message for division by 0
-- Displays error message for incomplete equations, like 4 +
+
 
 
 # handles parentheses
 
-- empty parentheses throw an error
+
 - you can negate an entire parenthetical expression
 - parenthesis matching is greedy, and nested parenthetical expressions work as expected
 - a parenthesis which yields a minus number, and is then negated, converts back into a positive number
