@@ -24,6 +24,7 @@ These are test cases I should have written. Having them would have seriously imp
 
 - you can negate an entire parenthetical expression
 - parenthesis matching is greedy, and nested parenthetical expressions work as expected
+- adjacent parentheses are not matched greedily... i.e., your entire stratefy is fucked.
 - a parenthesis which yields a minus number, and is then negated, converts back into a positive number
 
 
@@ -32,3 +33,6 @@ These are test cases I should have written. Having them would have seriously imp
 - the parser ignores whitespace
 - the parser ignores non-number or operator characters
 - the parser detects exponents
+
+
+# Minus numbers not related to parentheses
